@@ -56,7 +56,7 @@ exports.login = catchAsync(async (req, res, next) => {
   // correctPassword is instance method on User object
   if (!user || !(await user.correctPassword(password, user.password)))
     return next(new AppError('Incorrect email or password', 401));
-  console.log(user);
+ 
   createSendToken(user, 201, res);
 });
 exports.logout = (req, res) => {

@@ -8,6 +8,7 @@ const hpp = require('hpp');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const compression = require('compression');
 
 const app = express();
 const AppError = require('./utils/appError');
@@ -39,7 +40,7 @@ const limiter = rateLimit({
   windowMs: 60 * 60 * 1000,
   message: 'Too many requests from this IP address. Please try after an hour.'
 });
-
+app.use(compression());
 app.use('/api', limiter);
 // body parser limiting size
 app.use(express.json({ limit: '10kb' }));
